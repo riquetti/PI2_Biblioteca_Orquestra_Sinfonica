@@ -38,37 +38,37 @@
 
         <p>
           <label>Compositor:</label>
-          <input class="form-control" type="texte" value="{{livro.compositor}}" name="compositor">
+          <input class="form-control" type="texte" value="{{livro.compositor}}" aria-label="compositor">
         </p>
 
         <p>
           <label>Arranjador:</label>
-          <input class="form-control" type="texte" value="{{livro.arranjador}}" name="arranjador">
+          <input class="form-control" type="texte" value="{{livro.arranjador}}" aria-label="arranjador">
         </p>
 
         <p>
           <label>Nome da Obra:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.obra}}" name="obra">
-        </p>
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.obra}}" name="obra" aria-label="nome da obra">
+        </p>
 
         <p>
           <label>Classificação:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.classificacao}}" name="classificacao">
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.classificacao}}" name="classificacao" aria-label="classificação">
         </p>
 
         <p>
           <label>Conteúdo:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.conteudo}}" name="conteudo">
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.conteudo}}" name="conteudo" aria-label="conteúdo">
         </p>
 
         <p>
           <label>Edição:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.edicao}}" name="edicao">
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.edicao}}" name="edicao" aria-label="edição">
         </p>
 
         <p>
           <label>Localização:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.localizacao}}" name="localizacao">
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.localizacao}}" name="localizacao" aria-label="localização">
         </p>
        <!--
         <p>
@@ -79,23 +79,22 @@
 
         <p>
           <label>Formato:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.formato}}" name="formato">
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.formato}}" name="formato" aria-label="formato">
         </p>
 
 
         <p>
           <label>Observações:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacao}}" name="observacao">
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacao}}" name="observacao" aria-label="observação">
         </p>
 
         <p>
           <label>Observações Gerais:</label>
-          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacoes_gerais}}" name="observacoes_gerais">
+          <input style="width: 40%;" class="form-control" type="texte" value="{{livro.observacoes_gerais}}" name="observacoes_gerais" aria-label="observações gerais">
         </p>
 
-
         <label>Categoria:</label>
-        <select style="width: 20%;" class="form-control" name="categoria_id">
+        <select style="width: 20%;" class="form-control" name="categoria_id" aria-label="categoria">
           
           {% for i in categoria_livro%}
           
@@ -152,40 +151,41 @@
     <hr>
     <h2 style="color: white;">Histórico de Retiradas</h2>
     
-
-    <table class="table table-striped">
+    <table class="table table-striped" role="grid" aria-label="Histórico de Retiradas">
       <thead>
         <tr>
-          <th scope="col" style="color: white;" >Nome</th>
+          <th scope="col" style="color: white;">Nome</th>
           <th scope="col" style="color: white;">Data Retirada</th>
           <th scope="col" style="color: white;">Data Devolução</th>
-          <th scope="col" style="color: white;">Tempo de duração</th>
+          <th scope="col" style="color: white;">Tempo de Duração</th>
           <!-- <th scope="col" style="color: white;">Avaliação do estado do material</th> -->
         </tr>
       </thead>
       <tbody>
-        {% for i in emprestimos%}
+        {% for i in emprestimos %}
           <tr>
             {% if i.nome_emprestado_anonimo == None %}
-              <th scope="row" style="color: white;">{{i.nome_emprestado}}</th>
+              <th scope="row" tabindex="0" style="color: white;">
+                {{ i.nome_emprestado }}</th>
             {% else %}
-            <th scope="row" style="color: white;">{{i.nome_emprestado_anonimo}}</th>
-            {% endif%}
-            <td style="color: white;">{{i.data_emprestimo}}</td>
-            <td style="color: white;">{{i.data_devolucao}}</td>
-            <td style="color: white;">{{i.data_devolucao|mostra_duracao:i.data_emprestimo  }}</td>
-            <td style="color: white;">
-            <!-- {% if i.avaliacao == None %}
-              <button onclick="avaliacao({{i.id}})" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">AVALIAR</button>
-            {% else%}
-              {{i.avaliacao}}-->
-
+            <th scope="row" tabindex="0" style="color: white;">
+                {{ i.nome_emprestado_anonimo }}</th>
             {% endif %}
-            </td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+            <td tabindex="0" style="color: white;">{{ i.data_emprestimo }}</td>
+            <td tabindex="0" style="color: white;">{{ i.data_devolucao }}</td>
+            <td tabindex="0" style="color: white;">{{ i.data_devolucao|mostra_duracao:i.data_emprestimo }}</td>
+            <td style="color: white;">
+              <!-- {% if i.avaliacao == None %}
+                <button onclick="avaliacao({{i.id}})" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">AVALIAR</button>
+              {% else%}
+                {{i.avaliacao}}
+              {% endif %}-->
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    
     
   
   </div>

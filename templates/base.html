@@ -13,21 +13,71 @@
 
     <style>
         body {
-            background-image: url('https://scontent.fplu19-1.fna.fbcdn.net/v/t39.30808-6/461338423_1053425566790877_2811137426748909039_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=AbEja7cyGMAQ7kNvgF0RgWt&_nc_ht=scontent.fplu19-1.fna&_nc_gid=AGMDoB-d5Tv9u2CjFLQ6-ZP&oh=00_AYBtPg7Hy8H_Y6B4r0_uBERwW7JOp_LBbn_JpZnk_sirxw&oe=6704AFFA');
+            /* background-image: url('https://scontent.fplu19-1.fna.fbcdn.net/v/t39.30808-6/461338423_1053425566790877_2811137426748909039_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=AbEja7cyGMAQ7kNvgF0RgWt&_nc_ht=scontent.fplu19-1.fna&_nc_gid=AGMDoB-d5Tv9u2CjFLQ6-ZP&oh=00_AYBtPg7Hy8H_Y6B4r0_uBERwW7JOp_LBbn_JpZnk_sirxw&oe=6704AFFA'); */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed; /* Para manter a imagem fixa enquanto rola a página */
         }
     </style>
+    <style>
+        body {
+            background-color: #64436a; /* Exemplo de cor de fundo para melhor contraste */
+        }
+        footer {
+            background-color: #333; /* Cor de fundo do rodapé para contraste */
+            color: white; /* Cor do texto do rodapé */
+            padding: 10px; /* Espaçamento interno do rodapé */
+            text-align: center; /* Centraliza o texto no rodapé */
+            position: fixed; /* Fixa o rodapé na parte inferior da página */
+            width: 100%; /* Largura total do rodapé */
+            bottom: 0; /* Posiciona o rodapé na parte inferior */
+        }
+        footer a {
+            color: #1e90ff; /* Cor do link no rodapé */
+        }
+        footer a:hover {
+            color: #ff6347; /* Cor do link ao passar o mouse */
+        }
+        footer p {
+            display: inline-block; /* Coloca os parágrafos na mesma linha */
+            margin: 0; /* Remove margens para evitar espaçamento extra */
+        }    
+    </style>
+    <style>
+    /* Estilos de alto contraste */
+    body.alto-contraste {
+        background-color: black;
+        color: yellow;
+    }
 
+    /* Outros elementos com alto contraste */
+    button.alto-contraste {
+        background-color: yellow;
+        color: black;
+        border: 2px solid white;
+    }
+    </style>
 
 </head>
+
 <body>
 
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" style="font-family: 'NomeDaFonte', sans-serif; font-size: 24px; color: #ffffff;" href="{% url 'home' %}">Biblioteca - Arquivo Banda Henrique Marques</a>
-
+    <!-- Botão alto contraste -->
+    <div>
+        <button id="btn-alto-contraste" class="btn btn-primary" onclick="toggleContraste()">Ativar Alto Contraste</button>
+    </div>
+    <!-- fim  Botão Ajuste do botão alto contraste, ver script -->
+    <!-- Botão ajuste do tamanho da fonte -->
+    <div class="d-flex align-items-center">
+    <div class="text-controls" style="color: white; margin-right: 10px; font-size: 16px;">
+        Tamanho da Fonte: 
+        <button id="increase-font" class="btn btn-secondary btn-sm">+</button>
+        <button id="decrease-font" class="btn btn-secondary btn-sm">-</button>
+    </div>
+    <!-- fim  Botão Ajuste do tamanho da fonte, ver script -->
     {% if usuario_logado %}
     <div class="dropdown show">
         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
@@ -165,8 +215,18 @@
 </div>
 {% endif %}
 
+    <!-- Conteúdo da página -->
+
+    <!-- Rodapé da página -->
+    <!-- <footer>
+        <p><a href="https://www.facebook.com/bandahenriquemarques" target="_blank">Facebook Banda Henrique Marques.</a></p>
+        <p>Fonte da imagem: <a href="https://scontent.fcpq8-1.fna.fbcdn.net/v/t39.30808-6/325147756_1539843419828431_87194455277469121_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5xdX8WMfpwUQ7kNvgE5m9dL&_nc_ht=scontent.fcpq8-1.fna&oh=00_AYAO6uzq2oWHNhZHOQKsvk6SjXG78MTYabo7RmhGu_-mEA&oe=66558C69" target="_blank">Banda Henrique Marques</a></p>
+    </footer> -->
 
 <script>
+
+    //Script para esconder filtros
+    
     function mostrar_form(v1) {
         categoria = document.getElementById('categoria')
         livro = document.getElementById('livro')
@@ -218,50 +278,66 @@
 
 
     }
+
+
+
+    //Script para alto contraste
+
+    function toggleContraste() {
+    // Alterna a classe 'alto-contraste' no corpo da página
+    document.body.classList.toggle('alto-contraste');
+
+    // Salva a preferência do usuário no localStorage
+    if (document.body.classList.contains('alto-contraste')) {
+        localStorage.setItem('contraste', 'ativo');
+    } else {
+        localStorage.removeItem('contraste');
+    }
+    }
+    
+    // Ao carregar a página, verifica se o usuário já ativou o alto contraste antes
+    window.onload = function() {
+        if (localStorage.getItem('contraste') === 'ativo') {
+            document.body.classList.add('alto-contraste');
+        }
+
+    }
+
+
+
+    //Script Ajuste do tamanho da fonte
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const increaseButton = document.getElementById('increase-font');
+        const decreaseButton = document.getElementById('decrease-font');
+        
+        // Seletor para elementos cujas fontes você deseja ajustar
+        const elements = document.querySelectorAll('body, p, h1, h2, h3, h4, h5, h6, button, nav, a, span, li, input, select, textarea'); 
+
+        let currentFontSize = 16; // Tamanho padrão do texto em pixels
+
+        function setFontSize(size) {
+            elements.forEach(element => {
+                element.style.fontSize = size + 'px';
+            });
+        }
+
+        increaseButton.addEventListener('click', function () {
+            currentFontSize += 2; // Aumenta o tamanho do texto
+            setFontSize(currentFontSize);
+        });
+
+        decreaseButton.addEventListener('click', function () {
+            if (currentFontSize > 10) { // Define um tamanho mínimo
+                currentFontSize -= 2; // Diminui o tamanho do texto
+                setFontSize(currentFontSize);
+            }
+        });
+
+        // Inicializa o tamanho da fonte ao carregar a página
+        setFontSize(currentFontSize);
+    });
 </script>
 
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Página</title>
-    <!-- Adicionando estilo CSS -->
-    <style>
-        body {
-            background-color: #f0f0f0; /* Exemplo de cor de fundo para melhor contraste */
-        }
-        footer {
-            background-color: #333; /* Cor de fundo do rodapé para contraste */
-            color: white; /* Cor do texto do rodapé */
-            padding: 10px; /* Espaçamento interno do rodapé */
-            text-align: center; /* Centraliza o texto no rodapé */
-            position: fixed; /* Fixa o rodapé na parte inferior da página */
-            width: 100%; /* Largura total do rodapé */
-            bottom: 0; /* Posiciona o rodapé na parte inferior */
-        }
-        footer a {
-            color: #1e90ff; /* Cor do link no rodapé */
-        }
-        footer a:hover {
-            color: #ff6347; /* Cor do link ao passar o mouse */
-        }
-        footer p {
-            display: inline-block; /* Coloca os parágrafos na mesma linha */
-            margin: 0; /* Remove margens para evitar espaçamento extra */
-        }
-    </style>
-</head>
-<body>
-    <!-- Conteúdo da página -->
-
-    <!-- Rodapé da página -->
-    <footer>
-        <p><a href="https://www.facebook.com/bandahenriquemarques" target="_blank">Facebook Banda Henrique Marques.</a></p>
-        <p>Fonte da imagem: <a href="https://scontent.fcpq8-1.fna.fbcdn.net/v/t39.30808-6/325147756_1539843419828431_87194455277469121_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5xdX8WMfpwUQ7kNvgE5m9dL&_nc_ht=scontent.fcpq8-1.fna&oh=00_AYAO6uzq2oWHNhZHOQKsvk6SjXG78MTYabo7RmhGu_-mEA&oe=66558C69" target="_blank">Banda Henrique Marques</a></p>
-    </footer>
 </body>
 </html>
