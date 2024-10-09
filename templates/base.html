@@ -18,7 +18,11 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed; /* Para manter a imagem fixa enquanto rola a página */
-            background-color: #947c99; /* Exemplo de cor de fundo para melhor contraste */
+            background-color: antiquewhite; /* Cor de fundo */
+            color:#040100
+        }
+        .table.table-striped {
+            color:#040100
         }
         footer {
             background-color: #333; /* Cor de fundo do rodapé para contraste */
@@ -40,10 +44,26 @@
             margin: 0; /* Remove margens para evitar espaçamento extra */
         }    
 
+        .cards {
+            background-color: white;
+            border-radius:20px;
+            box-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 0px 0 #b9b9b9, 0 5px 0 rgba(125, 125, 125, 0.2), 0 6px 1px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 4px white, 0 0px 3px white, 1px 1px 5px rgba(255, 155, 0, 0.37), 1px 1px 10px rgba(102, 60, 0, 0.5); 
+        }
+
         /* Estilos de alto contraste */
         body.alto-contraste {
             background-color: black;
-            color: yellow;
+            color: white;
+        }
+
+        .livro.alto-contraste {
+            color: white;
+        }
+
+        .cards.alto-contraste {
+            background-color: black;
+            color: white;
+            box-shadow:  0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 0px 0 #b9b9b9, 5px 5px 25px rgba(255, 255, 255, 0.5);
         }
 
         /* Outros elementos com alto contraste */
@@ -52,6 +72,7 @@
             color: black;
             border: 2px solid white;
         }
+
     </style>
 
 </head>
@@ -256,7 +277,6 @@
             emprestimo.style.display = 'none';
         }
 
-
     }
 
     function exibe_input_emprestado(v1) {
@@ -271,7 +291,6 @@
 
         }
 
-
     }
 
 
@@ -281,6 +300,14 @@
     function toggleContraste() {
     // Alterna a classe 'alto-contraste' no corpo da página
     document.body.classList.toggle('alto-contraste');
+    lista_livros = document.getElementsByClassName("livro");
+    for (i of lista_livros) {
+        i.classList.toggle('alto-contraste');
+    lista_cards = document.getElementsByClassName("card");
+    }
+    for (j of lista_cards) {
+        j.classList.toggle('alto-contraste');
+    }
 
     // Salva a preferência do usuário no localStorage
     if (document.body.classList.contains('alto-contraste')) {
@@ -292,15 +319,21 @@
     
     // Ao carregar a página, verifica se o usuário já ativou o alto contraste antes
     window.onload = function() {
+        lista_livros = document.getElementsByClassName("livro");
+        lista_cards = document.getElementsByClassName("card");
         if (localStorage.getItem('contraste') === 'ativo') {
             document.body.classList.add('alto-contraste');
+        for (i of lista_livros) {
+            i.classList.add('alto-contraste');
         }
-
+        for (j of lista_cards) {
+            j.classList.add('alto-contraste');
+        }
     }
+}
 
 
-
-    //Script Ajuste do tamanho da fonte
+    //Script pra ajuste do tamanho da fonte
 
     document.addEventListener('DOMContentLoaded', function () {
     const increaseButton = document.getElementById('increase-font');
@@ -337,6 +370,7 @@
 
     // Inicializa o tamanho da fonte ao carregar a página
     setFontSize(currentFontSize);
+
 });
 </script>
 

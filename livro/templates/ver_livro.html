@@ -26,12 +26,12 @@
 
   <div class="container">
       <br>
-      <style>
-        /* Define a cor do texto da label como branco */
+      <!-- <style>
+        /* Define a cor do texto da label */
         label {
-            color: white;
+            color: rgb(46, 46, 46);
         }
-    </style>
+    </style> -->
     <form action="{% url 'alterar_livro' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" value="{{livro.id}}" name="livro_id">
@@ -115,13 +115,13 @@
 
         <p>
           <label >Data:</label>
-          <p style="color: white;">{{livro.data_cadastro}}</p>
+          <p>{{livro.data_cadastro}}</p>
         </p>
       
         <br>
        
         
-          <label style="color: white;">Emprestado</label>
+          <label>Emprestado</label>
           {% if livro.emprestado %}
 
             <svg style="color: green" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
@@ -149,32 +149,32 @@
     </button>
     
     <hr>
-    <h2 style="color: white;">Histórico de Retiradas</h2>
+    <h2>Histórico de Retiradas</h2>
     
     <table class="table table-striped" role="grid" aria-label="Histórico de Retiradas">
       <thead>
-        <tr>
-          <th scope="col" style="color: white;">Nome</th>
-          <th scope="col" style="color: white;">Data Retirada</th>
-          <th scope="col" style="color: white;">Data Devolução</th>
-          <th scope="col" style="color: white;">Tempo de Duração</th>
+        <tr class="livro">
+          <th scope="col">Nome</th>
+          <th scope="col">Data Retirada</th>
+          <th scope="col">Data Devolução</th>
+          <th scope="col">Tempo de Duração</th>
           <!-- <th scope="col" style="color: white;">Avaliação do estado do material</th> -->
         </tr>
       </thead>
       <tbody>
         {% for i in emprestimos %}
-          <tr>
+          <tr class="livro">
             {% if i.nome_emprestado_anonimo == None %}
-              <th scope="row" tabindex="0" style="color: white;">
+              <th scope="row" tabindex="0">
                 {{ i.nome_emprestado }}</th>
             {% else %}
-            <th scope="row" tabindex="0" style="color: white;">
+            <th scope="row" tabindex="0">
                 {{ i.nome_emprestado_anonimo }}</th>
             {% endif %}
-            <td tabindex="0" style="color: white;">{{ i.data_emprestimo }}</td>
-            <td tabindex="0" style="color: white;">{{ i.data_devolucao }}</td>
-            <td tabindex="0" style="color: white;">{{ i.data_devolucao|mostra_duracao:i.data_emprestimo }}</td>
-            <td style="color: white;">
+            <td tabindex="0">{{ i.data_emprestimo }}</td>
+            <td tabindex="0">{{ i.data_devolucao }}</td>
+            <td tabindex="0">{{ i.data_devolucao|mostra_duracao:i.data_emprestimo }}</td>
+            <td>
               <!-- {% if i.avaliacao == None %}
                 <button onclick="avaliacao({{i.id}})" class="btn btn-info" data-toggle="modal" data-target="#exampleModal1">AVALIAR</button>
               {% else%}

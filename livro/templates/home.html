@@ -10,7 +10,7 @@
   <style>
       h1 {
           font-family: 'Alegreya SC', serif; /* Use o nome da fonte correta aqui */
-          color: white;
+          /* color: rgb(46, 46, 46); */
       }
   </style>
   
@@ -22,11 +22,12 @@
 
   <!-- Filtro -->
   <form action="" method="GET" class="form-inline mb-2 ml-auto justify-content-between">
+    <!-- Botão para ver filtros -->
     <button type="button" id="ver-filtros-btn" class="btn btn-primary">Ver Filtros</button>
   
     <!-- Contêiner que contém todos os filtros, inicialmente escondido -->
     <div id="filtros" style="display: none;">
-      <label for="categoria" class="mr-2" style="color: white;"><strong>Filtrar por Categoria:</strong></label>
+      <label for="categoria" class="mr-2"><strong>Filtrar por Categoria:</strong></label>
       <select name="categoria" id="categoria" class="form-control mr-2">
           <option value="">Todas as categorias</option>
           {% for categoria in categorias %}
@@ -34,7 +35,7 @@
           {% endfor %}
       </select>
   
-      <label for="obra" class="mr-2" style="color: white;"> Obra:</label>
+      <label for="obra" class="mr-2"><strong>Obra:</strong></label>
       <select name="obra" id="obra" class="form-control mr-2">
           <option value="">Todas as obras</option>
           {% for obra in obras %}
@@ -42,7 +43,7 @@
           {% endfor %}
       </select>
   
-      <label for="classificacao" class="mr-2" style="color: white;"> Classificação:</label>
+      <label for="classificacao" class="mr-2"><strong>Classificação:</strong></label>
       <select name="classificacao" id="classificacao" class="form-control mr-2">
           <option value="">Todas as classificações</option>
           {% for classificacao in classificacoes %}
@@ -50,7 +51,7 @@
           {% endfor %}
       </select>
   
-      <label for="compositor" class="mr-2" style="color: white;"> Compositor:</label>
+      <label for="compositor" class="mr-2"><strong>Compositor:</strong></label>
       <select name="compositor" id="compositor" class="form-control mr-2">
           <option value="">Todos os compositores</option>
           {% for compositor in compositores %}
@@ -58,7 +59,7 @@
           {% endfor %}
       </select>
   
-      <label for="arranjador" class="mr-2" style="color: white;"> Arranjador:</label>
+      <label for="arranjador" class="mr-2"><strong>Arranjador:</strong></label>
       <select name="arranjador" id="arranjador" class="form-control mr-2">
           <option value="">Todos os arranjadores</option>
           {% for arranjador in arranjadores %}
@@ -68,34 +69,17 @@
 
     </br>
     </br>
-  
+      
+      <!-- Botão de filtrar -->
       <button type="submit" class="btn btn-primary">Filtrar</button>
   
       <!-- Botão para ocultar os filtros -->
       <button type="button" id="ocultar-filtros-btn" class="btn btn-secondary">Ocultar Filtros</button>
+    
     </div>
   </form>
+  <!-- FIM Filtro -->
 
-  <script>
-    // Pega os elementos relevantes
-    const verFiltrosBtn = document.getElementById('ver-filtros-btn');
-    const ocultarFiltrosBtn = document.getElementById('ocultar-filtros-btn');
-    const filtrosDiv = document.getElementById('filtros');
-  
-    // Mostra os filtros e oculta o botão "Ver Filtros" quando clicado
-    verFiltrosBtn.addEventListener('click', function() {
-      filtrosDiv.style.display = 'block';  // Mostra os filtros
-      verFiltrosBtn.style.display = 'none';  // Esconde o botão "Ver Filtros"
-    });
-  
-    // Oculta os filtros e mostra o botão "Ver Filtros" novamente
-    ocultarFiltrosBtn.addEventListener('click', function() {
-      filtrosDiv.style.display = 'none';  // Esconde os filtros
-      verFiltrosBtn.style.display = 'block';  // Mostra o botão "Ver Filtros"
-    });
-  </script>
-
-    <!-- FIM Filtro -->
     <br>
     {% if status_categoria == '1' %}
       <div class="alert alert-success" role="alert">
@@ -104,23 +88,22 @@
     {% endif %}
 
     <div class="row">
-
       
         {% for livro in livros %}
             <div class="col-md">
                 <div class="card" style="width: 18rem;">
                   
-                    <div class="card-body" style="background-color: #8404D920; border: 1px solid rgb(255, 255, 255); box-shadow: 5px 5px 25px rgba(255, 255, 255, 0.5);">
+                    <div class="card-body">
 
-                      <h5 class="card-title">{{ livro.obra}}</h5>
+                      <h5 class="card-title">{{ livro.obra }}</h5>
                       <p class="card-text"><strong>Categoria:</strong> {{ livro.categoria }}</p>
                       <p class="card-text"><strong>Classificação:</strong> {{ livro.classificacao }}</p>
                       <p class="card-text"><strong>Localização:</strong> {{ livro.localizacao }}</p>
                       <!--<p class="card-text"><strong>Número de exemplares:</strong> {{ livro.exemplares_disponiveis }}</p>-->
-                      <p class="card-text"><strong>Formato:</strong> {{ livro.formato }}</p>
+                      <p class="card-text"><strong>Formato:</strong> {{ livro.formato }}</p>
                      
                      
-                      <h6 style="display: inline;" class="card-subtitle mb-2 text-muted">Emprestado</h6>
+                      <h6 style="display: inline" class="card-subtitle mb-2">Emprestado</h6>
                       
                       {% if livro.emprestado %}
 
@@ -162,5 +145,25 @@
     </div>
 </div>
 
+<script>
+  // Script para ocultar filtros
+  
+  // Pega os elementos relevantes
+  const verFiltrosBtn = document.getElementById('ver-filtros-btn');
+  const ocultarFiltrosBtn = document.getElementById('ocultar-filtros-btn');
+  const filtrosDiv = document.getElementById('filtros');
+
+  // Mostra os filtros e oculta o botão "Ver Filtros" quando clicado
+  verFiltrosBtn.addEventListener('click', function() {
+    filtrosDiv.style.display = 'block';  // Mostra os filtros
+    verFiltrosBtn.style.display = 'none';  // Esconde o botão "Ver Filtros"
+  });
+
+  // Oculta os filtros e mostra o botão "Ver Filtros" novamente
+  ocultarFiltrosBtn.addEventListener('click', function() {
+    filtrosDiv.style.display = 'none';  // Esconde os filtros
+    verFiltrosBtn.style.display = 'block';  // Mostra o botão "Ver Filtros"
+  });
+</script>
 
 {% endblock %}
