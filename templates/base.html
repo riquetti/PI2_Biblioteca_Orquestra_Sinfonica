@@ -18,11 +18,7 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed; /* Para manter a imagem fixa enquanto rola a página */
-        }
-    </style>
-    <style>
-        body {
-            background-color: #64436a; /* Exemplo de cor de fundo para melhor contraste */
+            background-color: #947c99; /* Exemplo de cor de fundo para melhor contraste */
         }
         footer {
             background-color: #333; /* Cor de fundo do rodapé para contraste */
@@ -43,20 +39,19 @@
             display: inline-block; /* Coloca os parágrafos na mesma linha */
             margin: 0; /* Remove margens para evitar espaçamento extra */
         }    
-    </style>
-    <style>
-    /* Estilos de alto contraste */
-    body.alto-contraste {
-        background-color: black;
-        color: yellow;
-    }
 
-    /* Outros elementos com alto contraste */
-    button.alto-contraste {
-        background-color: yellow;
-        color: black;
-        border: 2px solid white;
-    }
+        /* Estilos de alto contraste */
+        body.alto-contraste {
+            background-color: black;
+            color: yellow;
+        }
+
+        /* Outros elementos com alto contraste */
+        button.alto-contraste {
+            background-color: yellow;
+            color: black;
+            border: 2px solid white;
+        }
     </style>
 
 </head>
@@ -72,7 +67,7 @@
     <!-- fim  Botão Ajuste do botão alto contraste, ver script -->
     <!-- Botão ajuste do tamanho da fonte -->
     <div class="d-flex align-items-center">
-    <div class="text-controls" style="color: white; margin-right: 10px; font-size: 16px;">
+    <div class="text-controls" style="color: white; margin-right: 20px; font-size: 16px;">
         Tamanho da Fonte: 
         <button id="increase-font" class="btn btn-secondary btn-sm">+</button>
         <button id="decrease-font" class="btn btn-secondary btn-sm">-</button>
@@ -308,35 +303,41 @@
     //Script Ajuste do tamanho da fonte
 
     document.addEventListener('DOMContentLoaded', function () {
-        const increaseButton = document.getElementById('increase-font');
-        const decreaseButton = document.getElementById('decrease-font');
-        
-        // Seletor para elementos cujas fontes você deseja ajustar
-        const elements = document.querySelectorAll('body, p, h1, h2, h3, h4, h5, h6, button, nav, a, span, li, input, select, textarea'); 
+    const increaseButton = document.getElementById('increase-font');
+    const decreaseButton = document.getElementById('decrease-font');
+    
+    // Seletor para os elementos cujas fontes serão ajustadas
+    const elements = document.querySelectorAll('body, p, h1, h2, h3, h4, h5, h6, button, nav, a, span, li, input, select, textarea');
+    const largerTextElements = document.querySelectorAll('.larger-text'); // Seleciona textos maiores
 
-        let currentFontSize = 16; // Tamanho padrão do texto em pixels
+    let currentFontSize = 16; // Tamanho padrão do texto em pixels
 
-        function setFontSize(size) {
-            elements.forEach(element => {
-                element.style.fontSize = size + 'px';
-            });
-        }
-
-        increaseButton.addEventListener('click', function () {
-            currentFontSize += 2; // Aumenta o tamanho do texto
-            setFontSize(currentFontSize);
+    // Função para ajustar o tamanho da fonte em todos os elementos
+    function setFontSize(size) {
+        elements.forEach(element => {
+            element.style.fontSize = size + 'px';
         });
-
-        decreaseButton.addEventListener('click', function () {
-            if (currentFontSize > 10) { // Define um tamanho mínimo
-                currentFontSize -= 2; // Diminui o tamanho do texto
-                setFontSize(currentFontSize);
-            }
+        // Ajusta a fonte para os elementos com .larger-text para que fiquem maiores
+        largerTextElements.forEach(element => {
+            element.style.fontSize = (size * 3) + 'px'; // O dobro do tamanho
         });
+    }
 
-        // Inicializa o tamanho da fonte ao carregar a página
+    increaseButton.addEventListener('click', function () {
+        currentFontSize += 2; // Aumenta o tamanho do texto
         setFontSize(currentFontSize);
     });
+
+    decreaseButton.addEventListener('click', function () {
+        if (currentFontSize > 10) { // Define um tamanho mínimo
+            currentFontSize -= 2; // Diminui o tamanho do texto
+            setFontSize(currentFontSize);
+        }
+    });
+
+    // Inicializa o tamanho da fonte ao carregar a página
+    setFontSize(currentFontSize);
+});
 </script>
 
 </body>
