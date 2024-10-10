@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
-{% block 'titulo' %}Login{% endblock %}
+{% block 'titulo_head' %} Login {% endblock %}
 
-{% block 'conteudo' %}
+{% block 'head_extra' %} 
+
 <style>
+    
     .background {
         /* background-image: url('https://scontent.fcpq8-1.fna.fbcdn.net/v/t39.30808-6/325147756_1539843419828431_87194455277469121_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_ohc=5xdX8WMfpwUQ7kNvgE5m9dL&_nc_ht=scontent.fcpq8-1.fna&oh=00_AYAO6uzq2oWHNhZHOQKsvk6SjXG78MTYabo7RmhGu_-mEA&oe=66558C69'); */
         background-size: cover;
@@ -13,9 +15,11 @@
         justify-content: center;
         align-items: center;
     }
+    
     body {
         background-color: #f0f0f0; /* Exemplo de cor de fundo para melhor contraste */
     }
+    
     .formulario {
         background-color: rgba(255, 255, 255, 0.8);
         padding: 20px;
@@ -23,6 +27,7 @@
         max-width: 400px;
         width: 100%;
     }
+    
     footer {
         background-color: #333; /* Cor de fundo do rodapé para contraste */
         color: white; /* Cor do texto do rodapé */
@@ -32,17 +37,25 @@
         width: 100%; /* Largura total do rodapé */
         bottom: 0; /* Posiciona o rodapé na parte inferior */
     }
+    
     footer a {
         color: #1e90ff; /* Cor do link no rodapé */
     }
+    
     footer a:hover {
         color: #ff6347; /* Cor do link ao passar o mouse */
     }
+    
     footer p {
         display: inline-block; /* Coloca os parágrafos na mesma linha */
         margin: 0; /* Remove margens para evitar espaçamento extra */
     }
+
 </style>
+
+{% endblock %}
+
+{% block 'body_extra' %}
 
 <div class="background">
     <div class="formulario">

@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 
+{% block 'titulo_head' %} Home Page {% endblock %}
 
-{% block 'conteudo' %}
-
-<div class="container text-center">
+{% block 'head_extra' %} 
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;700&display=swap">
 
@@ -13,14 +12,18 @@
           /* color: rgb(46, 46, 46); */
       }
   </style>
-  
+
+{% endblock %}
+
+{% block 'body_extra' %}
+
+<div class="container text-center">
+
   <h1 class="larger-text">Acervo de Partituras</h1>
-  
 
-  <hr style="background-color: white;">
+  <hr style="background-color: rgb(85, 83, 83);">
 
-
-  <!-- Filtro -->
+  <!-- Filtros -->
   <form action="" method="GET" class="form-inline mb-2 ml-auto justify-content-between">
     <!-- Botão para ver filtros -->
     <button type="button" id="ver-filtros-btn" class="btn btn-primary">Ver Filtros</button>
@@ -78,7 +81,7 @@
     
     </div>
   </form>
-  <!-- FIM Filtro -->
+  <!-- Fim dos Filtros -->
 
     <br>
     {% if status_categoria == '1' %}
