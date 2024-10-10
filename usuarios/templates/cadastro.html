@@ -16,12 +16,17 @@
         align-items: center;
     }
 
-    .formulario {
-        background-color: rgba(255, 255, 255, 0.8);
+    .card {
+        background-color: white;
         padding: 20px;
         border-radius: 10px;
         max-width: 400px;
         width: 100%;
+        box-shadow: 5px 5px 25px rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-warning {
+        margin: 0 15px;
     }
 
 </style>
@@ -31,7 +36,7 @@
 {% block 'body_extra' %}
 
 <div class="background">
-    <div class="formulario">
+    <div class="card">
         {% if status == '0'%}
         <div class="alert alert-success" role="alert">
             Cadastro realizado com sucesso
@@ -62,7 +67,8 @@
         </div>
         {% endif %}
         <h1>Cadastre-se</h1>
-        <hr>
+        
+        <hr style="background-color: rgb(83, 83, 83);">
 
         <form method="POST" action="{% url 'valida_cadastro' %}">{% csrf_token %}
 
