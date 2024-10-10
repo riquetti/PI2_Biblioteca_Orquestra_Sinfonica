@@ -87,7 +87,7 @@
     <a class="navbar-brand" style="font-family: 'NomeDaFonte', sans-serif; font-size: 24px; color: #ffffff;" href="{% url 'home' %}">Biblioteca - Arquivo Banda Henrique Marques</a>
     <!-- Botão alto contraste -->
     <div>
-        <button id="btn-alto-contraste" class="btn btn-primary" onclick="toggleContraste()">Ativar Alto Contraste</button>
+        <button id="btn-alto-contraste" class="btn btn-secondary" onclick="toggleContraste()">Ativar Alto Contraste</button>
     </div>
     <!-- fim  Botão Ajuste do botão alto contraste, ver script -->
     <!-- Botão ajuste do tamanho da fonte -->
@@ -106,7 +106,7 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-            <button type="button" class="btn btn-primary dropdown-item" data-toggle="modal" data-target="#exampleModal">Opções</button>
+            <button type="button" class="btn btn-secondary dropdown-item" data-toggle="modal" data-target="#exampleModal">Opções</button>
             <a href="{% url 'seus_emprestimos' %}" class="btn btn-danger dropdown-item" >Retirados</a>
             <a href="{% url 'sair'%}" class="btn btn-danger dropdown-item">Sair</a>
             <div class="dropdown-divider"></div>
@@ -132,7 +132,7 @@
                 <!--
                 <button style="margin-left: 10px;" onclick="mostrar_form(1)" class="btn btn-info">Categoria</button> -->
                 <button style="margin-left: 10px;" onclick="mostrar_form(2)" class="btn btn-warning">Obra</button>
-                <button style="margin-left: 10px;" onclick="mostrar_form(3)" class="btn btn-primary">Retirar
+                <button style="margin-left: 10px;" onclick="mostrar_form(3)" class="btn btn-secondary">Retirar
                 </button>
                 <button style="margin-left: 10px;" onclick="mostrar_form(4)" class="btn btn-danger">Devolução</button>
                 <br>
