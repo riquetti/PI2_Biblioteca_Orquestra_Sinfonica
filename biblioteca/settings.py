@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+import sys
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -103,6 +105,13 @@ DATABASES = {
 #       'PORT': '5432',
 #   }
 # }
+
+# Verifique se o comando é 'test' e use o banco de dados em memória durante os testes
+if 'test' in sys.argv:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': ':memory:',  # Banco de dados temporário em memória
+    }
 
 
 # Password validation
