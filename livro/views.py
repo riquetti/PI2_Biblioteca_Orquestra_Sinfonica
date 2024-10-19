@@ -146,7 +146,7 @@ def cadastrar_categoria(request):
         categoria.save()
         return redirect('/livro/home?cadastro_categoria=1')
     else:
-        return HttpResponse('Pare de ser um usuário malandrinho. Não foi desta vez.')
+        return HttpResponse('Não foi desta vez.')
 
     
 def cadastrar_emprestimo(request):
@@ -233,9 +233,6 @@ def processa_avaliacao(request):
     id_emprestimo = request.POST.get('id_emprestimo')
     opcoes = request.POST.get('opcoes')
     id_livro = request.POST.get('id_livro')
-    #TODO: Verificar segurança
-    #TODO: Não permitir avaliação de livro nao devolvido
-    #TODO: Colocar as estrelas
     emprestimo = Emprestimos.objects.get(id = id_emprestimo)
     emprestimo.avaliacao = opcoes
     emprestimo.save()

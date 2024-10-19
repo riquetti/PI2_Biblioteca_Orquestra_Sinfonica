@@ -54,6 +54,21 @@
 
 {% block 'body_extra' %}
 
+<!-- Menu de navegação superior -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}">Eventos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}">Galeria</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}">Contato</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- Conteúdo da página de login -->
 <div class="background">
     <div class="card">
         {% if status == '1' %}

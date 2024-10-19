@@ -6,6 +6,24 @@ from django.shortcuts import redirect, render
 
 from .models import Usuario
 
+def contato_view(request):
+    return render(request, 'banda_sinfonica/contato.html')
+
+def evento_view(request):
+    return render(request, 'banda_sinfonica/eventos.html')
+
+def galeria_view(request):
+    return render(request, 'banda_sinfonica/galeria.html')
+
+def login_view(request):
+    return render(request, 'banda_sinfonica/login.html')
+
+def sobre_view(request):
+    return render(request, 'banda_sinfonica/sobre.html')
+
+def index_view(request):
+    return render(request, 'banda_sinfonica/index.html')
+
 
 def is_valid_email(email):
     regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
@@ -38,7 +56,7 @@ def valida_cadastro(request):
         return redirect('/auth/cadastro/?status=2')
 
     if len(usuario) > 0:
-        return redirect('/auth/cadatro/?status=3')
+        return redirect('/auth/cadastro/?status=3')
     
     if not is_valid_email(email):
         return redirect('/auth/cadastro/?status=4')
