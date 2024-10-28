@@ -146,7 +146,8 @@ class TestViews(TestCase):
             'email': 'test@example.com',
             'senha': ''
         })
-        self.assertRedirects(response, '/livro/home/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Este campo é obrigatório.")
 
     #Cadastro
     def test_cadastro_usuario_logado(self):
@@ -211,3 +212,44 @@ class TestViews(TestCase):
 
         # Verifica se o template correto foi renderizado
         self.assertTemplateUsed(response, 'cadastro.html')
+
+        # Verifica as views do frontend
+    def test_contato_view(self):
+        response = self.client.get(reverse('contato'))  # Nome da URL que mapeia para contato_view
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'banda_sinfonica/contato.html')
+
+    def test_evento_view(self):
+        response = self.client.get(reverse('evento'))  # Nome da URL que mapeia para evento_view
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'banda_sinfonica/eventos.html')
+
+    def test_galeria_view(self):
+        response = self.client.get(reverse('galeria'))  # Nome da URL que mapeia para galeria_view
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'banda_sinfonica/galeria.html')
+
+    def test_login_view(self):
+        response = self.client.get(reverse('login'))  # Nome da URL que mapeia para login_view
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'banda_sinfonica/login.html')
+
+    def test_sobre_view(self):
+        response = self.client.get(reverse('sobre'))  # Nome da URL que mapeia para sobre_view
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'banda_sinfonica/sobre.html')
+
+    def test_index_view(self):
+        response = self.client.get(reverse('index'))  # Nome da URL que mapeia para index_view
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'banda_sinfonica/index.html')
+
+    # Verifica valida cadastro
+
+    def test_login_bem_sucedido(self):
+        response = self.client.post(reverse('login'), {
+            'email': 'test@example.com',
+            'senha': '12345'  # Usando a senha original
+        })
+        self.assertRedirects(response, '/livro/home/')
+        self.assertEqual(self.client.session['usuario'], self.usuario.id)

@@ -87,7 +87,8 @@ def validar_login(request):
         request.session['usuario'] = usuario[0].id
         return redirect(f'/livro/home/')
 
-    return HttpResponse(f"{email} {senha}")
+    # Resposta de fallback (geralmente não alcançada)
+    return HttpResponse("Erro inesperado durante o login.")
 
 
 def sair(request):
