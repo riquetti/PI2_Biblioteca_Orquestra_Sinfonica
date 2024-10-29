@@ -1,3 +1,4 @@
+
 let zoomLevel = 1;
 
 function toggleContrast() {
@@ -18,35 +19,38 @@ function zoomOut() {
     }
 }
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita o envio padrão do formulário
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
 
-    // Simulando o envio para um servidor (substitua a URL pelo endpoint real)
-    fetch('https://exemplo.com/api/enviar-contato', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, message }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao enviar a mensagem.');
-        }
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById('responseMessage').innerHTML = '<div class="alert alert-success">Mensagem enviada com sucesso!</div>';
-        document.getElementById('contactForm').reset(); // Limpa o formulário
-    })
-    .catch(error => {
-        document.getElementById('responseMessage').innerHTML = '<div class="alert alert-danger">Erro: ' + error.message + '</div>';
+        fetch('https://exemplo.com/api/enviar-contato', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email, message }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao enviar a mensagem.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('responseMessage').innerHTML = '<div class="alert alert-success">Mensagem enviada com sucesso!</div>';
+            document.getElementById('contactForm').reset();
+        })
+        .catch(error => {
+            document.getElementById('responseMessage').innerHTML = '<div class="alert alert-danger">Erro: ' + error.message + '</div>';
+        });
     });
 });
+
+
 
 document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita o envio padrão do formulário

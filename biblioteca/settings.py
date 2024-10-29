@@ -26,11 +26,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-51%05e2*phpmn9mj$epml3mk14rgrigvffc(g3#g0y^90ywv**'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'org-luis-santos-inst-instance-1.data-1.use1.tembo.io']
 
-#ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
+# ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 #ALLOWED_HOSTS = []
 
 
@@ -88,23 +88,26 @@ WSGI_APPLICATION = 'biblioteca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-   'default': {
-      'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db.sqlite3',
-   }
-}
-
 # DATABASES = {
 #   'default': {
-#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#       'NAME': 'postgres',
-#       'USER': 'postgres',
-#       'PASSWORD': '03Ew6gTzu0j7N92d',
-#       'HOST': 'org-luis-santos-inst-instance-1.data-1.use1.tembo.io',
-#       'PORT': '5432',
+#      'ENGINE': 'django.db.backends.sqlite3',
+#       'NAME': BASE_DIR / 'db.sqlite3',
 #   }
-# }
+# } 
+
+DATABASES = {
+  'default': {
+      'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      'NAME': 'postgres',
+      'USER': 'postgres',
+      'PASSWORD': '03Ew6gTzu0j7N92d',
+      'HOST': 'org-luis-santos-inst-instance-1.data-1.use1.tembo.io',
+      'PORT': '5432',
+    #   'OPTIONS': {
+    #         'options': '-c timezone=utc',
+    #     },
+  }
+}
 
 # Verifique se o comando é 'test' e use o banco de dados em memória durante os testes
 if 'test' in sys.argv:
@@ -144,7 +147,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -159,3 +162,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
