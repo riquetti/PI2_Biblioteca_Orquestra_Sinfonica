@@ -6,6 +6,10 @@ from django.shortcuts import redirect, render
 
 from .models import Usuario
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from hashlib import sha256  # Assegure-se de importar sha256
+
 def contato_view(request):
     return render(request, 'banda_sinfonica/contato.html')
 
@@ -16,7 +20,7 @@ def galeria_view(request):
     return render(request, 'banda_sinfonica/galeria.html')
 
 def login_view(request):
-    return render(request, 'banda_sinfonica/login.html')
+    return render(request, 'login.html')
 
 def sobre_view(request):
     return render(request, 'banda_sinfonica/sobre.html')
@@ -29,15 +33,17 @@ def is_valid_email(email):
     regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
     return re.match(regex, email) is not None
 
+
 def login(request):
     if request.session.get('usuario'):
-        return redirect('/livro/home/')
+        return redirect(f'/livro/home/')
     status = request.GET.get('status')
     return render(request, 'login.html', {'status': status})
 
+
 def cadastro(request):
     if request.session.get('usuario'):
-        return redirect('/livro/home/')
+        return redirect(f'/livro/home/')
     status = request.GET.get('status')
     return render(request, 'cadastro.html', {'status': status})
 

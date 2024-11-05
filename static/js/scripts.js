@@ -1,22 +1,24 @@
-
 let zoomLevel = 1;
 
+// Função para alternar contraste
 function toggleContrast() {
-    document.body.classList.toggle('high-contrast');
+    const body = document.body;
+    body.classList.toggle('high-contrast'); // Alterna a classe de contraste alto
+    console.log('toggleContrast foi chamado'); // Para depuração
 }
 
+// Função para aumentar o zoom
 function zoomIn() {
-    zoomLevel += 0.1;
-    document.body.style.transform = `scale(${zoomLevel})`;
-    document.body.style.transformOrigin = '0 0';
+    let currentZoom = parseFloat(getComputedStyle(document.body).fontSize);
+    document.body.style.fontSize = (currentZoom * 1.1) + 'px'; // Aumenta o tamanho da fonte em 10%
+    console.log('zoomIn foi chamado'); // Para depuração
 }
 
+// Função para reduzir o zoom
 function zoomOut() {
-    if (zoomLevel > 1) {
-        zoomLevel -= 0.1;
-        document.body.style.transform = `scale(${zoomLevel})`;
-        document.body.style.transformOrigin = '0 0';
-    }
+    let currentZoom = parseFloat(getComputedStyle(document.body).fontSize);
+    document.body.style.fontSize = (currentZoom / 1.1) + 'px'; // Reduz o tamanho da fonte em 10%
+    console.log('zoomOut foi chamado'); // Para depuração
 }
 
 document.addEventListener("DOMContentLoaded", function() {

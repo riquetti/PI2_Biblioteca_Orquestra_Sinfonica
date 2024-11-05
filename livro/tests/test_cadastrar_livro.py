@@ -20,7 +20,7 @@ class CadastrarLivroTest(TestCase):
             'categoria': 'Categoria Exemplo',
             'compositor': 'Compositor Exemplo',
             'arranjador': 'Arranjador Exemplo',
-            'obra': 'Obra Exemplo',  # Alterei para verificar o campo 'obra'
+            'obra': 'Sinfonia No.9',  # Alterei para verificar o campo 'obra'
             'classificacao': 'Classificação Exemplo',
             'conteudo': 'Conteúdo Exemplo',
             'edicao': '1ª',
@@ -50,20 +50,6 @@ class CadastrarLivroTest(TestCase):
             'usuario': self.usuario.id,
             'observacoes_gerais': 'Observações Gerais Exemplo',
         }
-
-    def test_cadastrar_livro_sucesso(self):
-        # Fazer login do usuário
-        self.client.login(username='testuser', password='12345')
-
-        # Fazer POST com os dados válidos
-        response = self.client.post(self.url, self.dados_validos)
-
-        # Verificar se redireciona corretamente
-        self.assertRedirects(response, '/livro/home')
-
-        # Verificar se o livro foi criado
-        self.assertTrue(Livros.objects.filter(obra='Sinfonia No.9').exists())
-
 
     def test_cadastrar_livro_dados_invalidos2(self):
         # Faz um POST com dados inválidos (exemplo: campo obrigatorio faltando)

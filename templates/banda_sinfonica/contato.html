@@ -22,8 +22,6 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'eventos' %}">Eventos</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}">Galeria</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}">Contato</a></li>
-                <!-- <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li> -->
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="accessibilityDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Acessibilidade</a>
                     <div class="dropdown-menu" aria-labelledby="accessibilityDropdown">
@@ -34,12 +32,11 @@
                 </li>
             </ul>
 
-                <!-- Botão de login à direita -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="btn btn-primary nav-link text-white" href="{% url 'sair' %}">Login</a>
-                    </li>
-                </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="btn btn-primary nav-link text-white" href="{% url 'sair' %}">Login</a>
+                </li>
+            </ul>
 
         </div>
     </nav>
@@ -63,12 +60,12 @@
         <div id="responseMessage" class="mt-3"></div>
     </div>
 
-    <!-- Scripts do Bootstrap e do seu arquivo JS -->
+    <!-- Scripts do Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/scripts.js' %}"></script>
-    <script src="/static/js/script.js"></script>
 
+    <!-- Script do seu arquivo JS -->
+    <script src="{% static 'js/scripts.js' %}"></script>
 </body>
 </html>

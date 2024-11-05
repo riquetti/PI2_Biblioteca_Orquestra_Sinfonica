@@ -20,6 +20,7 @@ function zoomOut() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Adicionar o listener para o formulário de contato
     document.getElementById('contactForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -48,37 +49,34 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('responseMessage').innerHTML = '<div class="alert alert-danger">Erro: ' + error.message + '</div>';
         });
     });
-});
 
+    // Adicionar o listener para o formulário de login
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita o envio padrão do formulário
 
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
 
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita o envio padrão do formulário
-
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    // Simulando o envio para um servidor (substitua a URL pelo endpoint real)
-    fetch('https://exemplo.com/api/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erro ao realizar o login.');
-        }
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById('loginResponseMessage').innerHTML = '<div class="alert alert-success">Login realizado com sucesso!</div>';
-        // Aqui você pode redirecionar para outra página ou armazenar um token de autenticação, etc.
-    })
-    .catch(error => {
-        document.getElementById('loginResponseMessage').innerHTML = '<div class="alert alert-danger">Erro: ' + error.message + '</div>';
+        // Simulando o envio para um servidor (substitua a URL pelo endpoint real)
+        fetch('https://exemplo.com/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao realizar o login.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('loginResponseMessage').innerHTML = '<div class="alert alert-success">Login realizado com sucesso!</div>';
+            // Aqui você pode redirecionar para outra página ou armazenar um token de autenticação, etc.
+        })
+        .catch(error => {
+            document.getElementById('loginResponseMessage').innerHTML = '<div class="alert alert-danger">Erro: ' + error.message + '</div>';
+        });
     });
 });
-
-
