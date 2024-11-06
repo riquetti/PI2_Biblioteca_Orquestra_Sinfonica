@@ -1,9 +1,9 @@
 body {
-    background-color: #ADD8E6;
+    background-color: #f0f0f0;
 }
 
 .navbar {
-    background-color: #1874CD !important; /* Azul escuro */
+    background-color: #454546 !important; /* Azul escuro */
 }
 
 .navbar-brand,
@@ -17,7 +17,7 @@ body {
 
 
 h1 {
-    color: #007bff;
+    color: #454546;
 }
 
 .container {
