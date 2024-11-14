@@ -89,26 +89,26 @@ WSGI_APPLICATION = 'biblioteca.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#   'default': {
-#      'ENGINE': 'django.db.backends.sqlite3',
-#       'NAME': BASE_DIR / 'db.sqlite3',
-#   }
-# } 
-
 DATABASES = {
   'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-      'NAME': 'postgres',
-      'USER': 'postgres',
-      'PASSWORD': '03Ew6gTzu0j7N92d',
-      'HOST': 'org-luis-santos-inst-instance-1.data-1.use1.tembo.io',
-      'PORT': '5432',
-    #   'OPTIONS': {
-    #         'options': '-c timezone=utc',
-    #     },
+     'ENGINE': 'django.db.backends.sqlite3',
+      'NAME': BASE_DIR / 'db.sqlite3',
   }
-}
+} 
+
+# DATABASES = {
+#   'default': {
+#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#       'NAME': 'postgres',
+#       'USER': 'postgres',
+#       'PASSWORD': '03Ew6gTzu0j7N92d',
+#       'HOST': 'org-luis-santos-inst-instance-1.data-1.use1.tembo.io',
+#       'PORT': '5432',
+#     #   'OPTIONS': {
+#     #         'options': '-c timezone=utc',
+#     #     },
+#   }
+# }
 
 # Verifique se o comando é 'test' e use o banco de dados em memória durante os testes
 if 'test' in sys.argv:
