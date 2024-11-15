@@ -25,3 +25,11 @@ class CategoriaLivro(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['descricao'].widget = forms.Textarea()
+
+class EventoForm(forms.Form):
+    summary = forms.CharField(max_length=255)
+    location = forms.CharField(max_length=255)
+    description = forms.CharField(widget=forms.Textarea)
+    start_datetime = forms.DateTimeField()
+    end_datetime = forms.DateTimeField()
+    attendees_emails = forms.CharField(help_text="Separe os e-mails com vírgulas")

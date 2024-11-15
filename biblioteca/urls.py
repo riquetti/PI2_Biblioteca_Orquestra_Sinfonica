@@ -4,8 +4,8 @@ from django.urls import include, path
 from usuarios import views
 
 urlpatterns = [
-    # path('', lambda request: redirect('index/')),
-    path('', lambda request: redirect('auth/login/')),
+    path('', lambda request: redirect('index/')),
+    # path('', lambda request: redirect('auth/login/')),
     path('admin/', admin.site.urls),
     path('livro/', include('livro.urls')),
     path('auth/', include('usuarios.urls')),

@@ -2,20 +2,20 @@
 let zoomLevel = 1;
 
 function toggleContrast() {
+    // Alterna uma classe CSS para aplicar o contraste alto
     document.body.classList.toggle('high-contrast');
 }
 
 function zoomIn() {
-    zoomLevel += 0.1;
-    document.body.style.transform = `scale(${zoomLevel})`;
-    document.body.style.transformOrigin = '0 0';
+    // Aumenta o zoom da página ajustando o tamanho da fonte
+    document.body.style.fontSize = (parseFloat(window.getComputedStyle(document.body).fontSize) + 2) + "px";
 }
 
 function zoomOut() {
-    if (zoomLevel > 1) {
-        zoomLevel -= 0.1;
-        document.body.style.transform = `scale(${zoomLevel})`;
-        document.body.style.transformOrigin = '0 0';
+    // Diminui o zoom da página ajustando o tamanho da fonte
+    const currentSize = parseFloat(window.getComputedStyle(document.body).fontSize);
+    if (currentSize > 10) { // Evita um tamanho de fonte muito pequeno
+        document.body.style.fontSize = (currentSize - 2) + "px";
     }
 }
 
