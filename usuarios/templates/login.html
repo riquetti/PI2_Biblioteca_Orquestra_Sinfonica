@@ -55,26 +55,28 @@
 {% block 'body_extra' %}
 
 <!-- Menu de navegação superior -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Informações da banda</a> <!-- Adicione um nome ou logo -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1874CD;">
+    <a class="navbar-brand" href="#" style="color: white;">Informações da banda</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}">Sobre</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}">Eventos</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}">Galeria</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}">Contato</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'sobre' %}" style="color: white;">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'evento' %}" style="color: white;">Eventos</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'galeria' %}" style="color: white;">Galeria</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contato' %}" style="color: white;">Contato</a></li>
         </ul>
     </div>
 </nav>
 
 
+
 <!-- Conteúdo da página de login -->
 <div class="background">
     <div class="card">
+        <h2 style="text-align: center; color: #1874CD;">Área exclusiva para membros da Banda Henrique Marques.</h2>
         {% if status == '1' %}
         <div class="alert alert-danger" role="alert">
             Email ou senha inválidos
